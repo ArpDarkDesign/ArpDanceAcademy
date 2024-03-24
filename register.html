@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arp Dance Academy - Register</title>
+    <link rel="stylesheet" href="../static/style5.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a1a;
+        margin: 0;
+        padding: 0;
+        color: #fff;
+      }
+
+      .container {
+        max-width: 500px;
+        margin: 50px auto;
+        background-color: #333;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .container h2 {
+        color: #fff;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        color: #fff;
+        margin-bottom: 5px;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: #1a1a1a;
+        color: #fff;
+      }
+
+      .select-wrapper {
+        position: relative;
+      }
+
+      .select-wrapper select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #1a1a1a;
+        color: #fff;
+        cursor: pointer;
+        width: 100%;
+        position: relative;
+        left: 3px;
+        top: 7px;
+      }
+
+      .select-arrow {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      .select-arrow::after {
+        content: "\25BC";
+        font-size: 16px;
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background: #590378;
+        font-family: cursive;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background: #4b0c76;
+      }
+
+      #submit-message {
+        display: none;
+        text-align: center;
+        color: #14ff37; /* Deep pink text color */
+        margin-top: 28px;
+        padding: 15px;
+        background: linear-gradient(
+          135deg,
+          #4b0082,
+          #8a2be2
+        ); /* Purple to blue gradient */
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="navbar">
+      <ul>
+        <li><a href="/home.html">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/contact.html">Contact Us</a></li>
+        <li><a href="/register.html">Register</a></li>
+        <li><a href="/declaration.html">Disclaimer</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h2>Register for Dance Classes</h2>
+      <form action="/" id="opp">
+        <div class="form-group">
+          <label for="full-name">Full Name:</label>
+          <input
+            type="text"
+            id="full-name"
+            name="full-name"
+            class="name"
+            placeholder="Enter Your Full Name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            class="name"
+            placeholder="Enter Your Phone Number"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="name"
+            placeholder="Enter Your Email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="age">Age:</label>
+          <div class="select-wrapper">
+            <select id="age" name="age" required>
+              <option value="">Select Your Age</option>
+              <!-- Adding age options from 15 to 45 -->
+              <?php for ($i = 15; $i <= 45; $i++) { ?>
+              <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+              <?php } ?>
+            </select>
+            <div class="select-arrow"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="gender">Gender:</label>
+          <div class="select-wrapper">
+            <select id="gender" name="gender" required>
+              <option value="">Select Your Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+            <div class="select-arrow"></div>
+          </div>
+        </div>
+        <button type="submit" class="btn" onclick="showMessage()">
+          Register Now
+        </button>
+      </form>
+      <div id="submit-message">
+        <p
+          style="
+            padding: 10px;
+            background-color: transparent;
+            border-radius: 5px;
+          "
+        >
+          Thank you for registering! Your details have been submitted
+          successfully.
+        </p>
+      </div>
+      <footer class="nice">Arp Dance Academy &#153; all rights reserved</footer>
+    </div>
+
+    <script>
+      // Function to populate the age dropdown from 15 to 45
+      function populateAgeDropdown() {
+        var select = document.getElementById("age");
+        for (var i = 15; i <= 45; i++) {
+          var option = document.createElement("option");
+          option.value = i;
+          option.text = i;
+          select.appendChild(option);
+        }
+      }
+
+      // Function to check if all fields are filled
+      function checkFields() {
+        var fullName = document.getElementById("full-name").value;
+        var phone = document.getElementById("phone").value;
+        var email = document.getElementById("email").value;
+        var age = document.getElementById("age").value;
+        var gender = document.getElementById("gender").value;
+
+        // Enable or disable the register button based on field completion
+        var registerButton = document.getElementById("register-button");
+        if (fullName && phone && email && age && gender) {
+          registerButton.disabled = false;
+        } else {
+          registerButton.disabled = true;
+        }
+      }
+
+      // Call the function to populate age dropdown when the page loads
+      window.onload = function () {
+        populateAgeDropdown();
+      };
+
+      document
+        .getElementById("opp")
+        .addEventListener("submit", function (event) {
+          showMessage(event);
+        });
+
+      function showMessage(event) {
+        event.preventDefault(); // Prevent form submission
+
+        var fullName = document.getElementById("full-name").value;
+        var phone = document.getElementById("phone").value;
+        var email = document.getElementById("email").value;
+        var age = document.getElementById("age").value;
+        var gender = document.getElementById("gender").value;
+
+        if (fullName && phone && email && age && gender) {
+          document.getElementById("submit-message").style.display = "block";
+          setTimeout(function () {
+            document.getElementById("submit-message").style.display = "none";
+            document.getElementById("opp").reset();
+          }, 3000); // Adjust the timeout value as needed
+        }
+      }
+    </script>
+  </body>
+</html>
